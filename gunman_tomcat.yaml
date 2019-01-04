@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gunclock-tomcat 
+  labels:
+    app: gunclock-tomcat
+spec:
+  containers:
+  - name: gunclock-tomcat
+    image: gunman/gunclock_tomcat:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gunclock-tomcat-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30080 
+  selector:
+    app: gunclock-tomcat
